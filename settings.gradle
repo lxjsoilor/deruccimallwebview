@@ -1,0 +1,3 @@
+include ':deruccimallwebview'
+include ':app'
+rootProject.name = "DerucciMallSDK"
