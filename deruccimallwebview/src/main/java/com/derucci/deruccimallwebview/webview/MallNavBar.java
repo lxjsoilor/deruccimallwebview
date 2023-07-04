@@ -49,7 +49,12 @@ public class MallNavBar extends RelativeLayout {
     }
 
     public void setTitle(String title) {
-        titleView.setText(title);
+//        如果包含下列字符，那么置空
+        if (title.contains("http") || title.contains("加载中")) {
+            titleView.setText("");
+        } else {
+            titleView.setText(title);
+        }
     }
 
     public void setBackArrowVisibility(int visibility) {

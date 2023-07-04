@@ -6,6 +6,7 @@ package com.derucci.deruccimallwebview.config;
  * Date: 2023/6/6
  */
 public class KeyConfig {
+    static public String NULL_TOKEN = "empty";
     static public String TOKEN_KEY = "token";
     static public String JS_CANAL = "android";
     //    mall4Development

@@ -42,6 +42,7 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
     private MallWebView webView;
     FrameLayout mallBox;
     FrameLayout webViewBox;
+
     private MallWebChromeClient mallWebChromeClient = new MallWebChromeClient(this) {
         @Override
         public void onReceivedTitle(WebView view, String title) {
@@ -222,13 +223,21 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
         }
         // 获取token的回调
         if(requestCode == MallJSInterface.REQUEST_LOGIN_TOKEN_CODE) {
-            if (data == null) {
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    webView.loadUrl("javascript:__setAppToken('')");
-                });
-                return;
-            }
-            String token = data.getStringExtra(KeyConfig.TOKEN_KEY);
+//            if (data == null) {
+//                new Handler(Looper.getMainLooper()).post(() -> {
+//                    webView.loadUrl("javascript:__setAppToken('')");
+//                });
+//                return;
+//            }
+//            String token = data.getStringExtra(KeyConfig.TOKEN_KEY);
+//            new Handler(Looper.getMainLooper()).post(() -> {
+//                webView.loadUrl("javascript:__setAppToken('" + token + "')");
+//            });
+        }
+    }
+
+    protected void setToken(String token) {
+        if(token != (null)) {
             new Handler(Looper.getMainLooper()).post(() -> {
                 webView.loadUrl("javascript:__setAppToken('" + token + "')");
             });
