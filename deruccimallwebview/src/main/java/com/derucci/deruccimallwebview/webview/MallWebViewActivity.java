@@ -237,7 +237,7 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
     }
 
     protected void setToken(String token) {
-        if(token != (null)) {
+        if(!token.equals(KeyConfig.NULL_TOKEN)) {
             new Handler(Looper.getMainLooper()).post(() -> {
                 webView.loadUrl("javascript:__setAppToken('" + token + "')");
             });
@@ -255,6 +255,13 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
 
     // 微信开放平台的appId
     protected abstract KeyConfig.ENV getENV();
+
+
+    @Override
+    protected void onResume() {
+        setToken(getToken());
+        super.onResume();
+    }
 
     private String getENVText() {
         KeyConfig.ENV env = getENV();
