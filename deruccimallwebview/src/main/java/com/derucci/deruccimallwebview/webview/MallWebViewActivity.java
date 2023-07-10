@@ -78,6 +78,12 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
         initListenerKeyBoard();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.enter_animation_reverse, R.anim.exit_animation_reverse);
+    }
+
     private void initListenerKeyBoard() {
         SoftKeyBoardListener.setListener(this, new SoftKeyBoardListener.OnSoftKeyBoardChangeListener() {
             @Override
@@ -118,7 +124,10 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
 
     private void initListener() {
         mallNavBar.setOnBackArrowClick(() -> webView.goBack());
-        mallNavBar.setOnCloseClick(this::finish);
+        mallNavBar.setOnCloseClick(() -> {
+            finish();
+            overridePendingTransition(R.anim.enter_animation_reverse, R.anim.exit_animation_reverse);
+        });
         webView.setWebChromeClient(mallWebChromeClient);
         webView.setWebViewClient(webViewClient);
         mallJSInterface = new MallJSInterface(this, webView);
