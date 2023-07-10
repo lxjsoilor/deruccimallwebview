@@ -128,10 +128,19 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
             finish();
             overridePendingTransition(R.anim.enter_animation_reverse, R.anim.exit_animation_reverse);
         });
+        mallNavBar.setOnMoreClick(() -> {
+            MallBottomDialog mallBottomDialog = new MallBottomDialog();
+            mallBottomDialog.setMallDialogItemClick((index) -> {
+                new Handler(Looper.getMainLooper()).post(() -> webView.loadUrl("javascript:__setMallDialogItemClick(" + index + ")"));
+            });
+            mallBottomDialog.show(getSupportFragmentManager(), "MallBottomDialog");
+        });
         webView.setWebChromeClient(mallWebChromeClient);
         webView.setWebViewClient(webViewClient);
         mallJSInterface = new MallJSInterface(this, webView);
         webView.addJavascriptInterface(mallJSInterface, KeyConfig.JS_CANAL);
+
+
     }
 
     // 设置沉浸式布局

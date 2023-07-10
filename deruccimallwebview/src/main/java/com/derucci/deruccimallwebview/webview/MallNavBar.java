@@ -26,6 +26,8 @@ public class MallNavBar extends RelativeLayout {
     private LinearLayout backArrowView;
     private ConstraintLayout navBarBox;
 
+    private ImageView moreView;
+
     public MallNavBar(Context context) {
         this(context, null, 0);
     }
@@ -46,6 +48,7 @@ public class MallNavBar extends RelativeLayout {
         closeViewWhite = findViewById(R.id.close_view_white);
         backArrowView = findViewById(R.id.left_view);
         navBarBox = findViewById(R.id.nav_bar_box);
+        moreView = findViewById(R.id.more_view);
     }
 
     public void setTitle(String title) {
@@ -72,6 +75,12 @@ public class MallNavBar extends RelativeLayout {
             runnable.run();
         });
         closeViewWhite.setOnClickListener((view) -> {
+            runnable.run();
+        });
+    }
+
+    public void setOnMoreClick(Runnable runnable) {
+        moreView.setOnClickListener((view) -> {
             runnable.run();
         });
     }
