@@ -70,6 +70,7 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mall_webview);
+        overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
         initTheme();
         initView();
         initListener();
