@@ -47,14 +47,19 @@ public abstract class MallWebViewActivity extends AppCompatActivity implements E
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
+            // 标题存在'全屏'，那么将页面设置为沉浸式
+            boolean isFullScreen = title.contains("fullScreen");
+            boolean isCanGoBack = !title.contains("hideBackIcon");
+            title = title.replace("fullScreen", "");
+            title = title.replace("hideBackIcon", "");
             mallNavBar.setTitle(title);
-            if(title.contains("全屏")) {
+            if (isFullScreen) {
                 setFullScreen();
             } else {
                 setNormalScreen();
                 UiUtils.setNavigationBarBlack(activity);
             }
-            if (webView.canGoBack()) {
+            if (webView.canGoBack() && isCanGoBack) {
                 mallNavBar.setBackArrowVisibility(View.VISIBLE);
             } else {
                 mallNavBar.setBackArrowVisibility(View.GONE);
